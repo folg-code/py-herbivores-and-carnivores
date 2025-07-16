@@ -20,10 +20,6 @@ class Animal:
         if animal in cls.alive and animal.health <= 0:
             cls.alive.remove(animal)
 
-    @classmethod
-    def __str__(cls) -> str:
-        return str([repr(animal) for animal in cls.alive])
-
 
 class Herbivore(Animal):
     def hide(self) -> None:
