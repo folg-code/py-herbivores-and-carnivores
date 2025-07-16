@@ -2,9 +2,13 @@ from __future__ import annotations
 
 
 class Animal:
-    alive = []
+    alive: list[Animal] = []
 
-    def __init__(self, name: str, health: int = 100) -> None:
+    def __init__(
+        self,
+        name: str,
+        health: int = 100
+    ) -> None:
         self.name = name
         self.health = health
         self.hidden = False
@@ -15,10 +19,15 @@ class Animal:
                 f"Health: {self.health}, "
                 f"Hidden: {self.hidden}}}")
 
+    def __str__(self) -> str:
+        return str({"Name": self.name,
+                    "Health": self.health,
+                    "Hidden": self.hidden})
+
     @classmethod
     def remove_if_dead(cls, animal: Animal) -> None:
-        if animal in cls.alive and animal.health <= 0:
-            cls.alive.remove(animal)
+        if animal in Animal.alive and animal.health <= 0:
+            Animal.alive.remove(animal)
 
 
 class Herbivore(Animal):
